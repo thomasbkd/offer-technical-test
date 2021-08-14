@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/api")
-    public ResponseEntity<String> create(String username, int dayOfBirth, int monthOfBirth, int yearOfBirth, String country) {
+    public ResponseEntity<String> create(String username, int dayOfBirth, int monthOfBirth, int yearOfBirth, String country, String gender, String phoneNumber) {
         User user;
         LocalDate dateOfBirth;
 
@@ -50,7 +50,9 @@ public class UserController {
             user = new User(
                     username,
                     dateOfBirth,
-                    country
+                    country,
+                    gender,
+                    phoneNumber
             );
 
             if(!user.isAdult()) {
