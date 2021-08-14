@@ -1,6 +1,8 @@
 package com.offer.test;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
 
@@ -16,20 +18,15 @@ public class User {
     private LocalDate dateOfBirth;
     private String country;
 
-    public User() {}
 
-    public User(long id, String username, LocalDate dateOfBirth, String country) {
-        this.id = id;
-        this.username = username;
-        this.dateOfBirth = dateOfBirth;
-        this.country = country;
-    }
+    public User() {}
 
     public User(String username, LocalDate dateOfBirth, String country) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.country = country;
     }
+
 
     public long getId() {
         return id;
@@ -61,5 +58,15 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+
+    public boolean isResident() {
+        return this.country.toLowerCase().equals("france");
+    }
+
+    public boolean isAdult() {
+        int age = Period.between(this.getDateOfBirth(), LocalDate.now()).getYears();
+        return age >= 18;
     }
 }
