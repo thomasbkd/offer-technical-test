@@ -2,8 +2,16 @@ package com.offer.test;
 
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "User")
 public class User {
+
+    @Id
+    @GeneratedValue
     private long id;
+
     private String username;
     private LocalDate dateOfBirth;
     private String country;
