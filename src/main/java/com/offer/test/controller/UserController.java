@@ -1,5 +1,7 @@
-package com.offer.test;
+package com.offer.test.controller;
 
+import com.offer.test.model.User;
+import com.offer.test.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

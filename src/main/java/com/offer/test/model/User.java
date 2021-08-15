@@ -1,4 +1,4 @@
-package com.offer.test;
+package com.offer.test.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
