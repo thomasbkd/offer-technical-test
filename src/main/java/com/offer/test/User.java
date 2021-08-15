@@ -1,14 +1,14 @@
 package com.offer.test;
 
-import org.springframework.lang.NonNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 import java.time.Period;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 
 
 @Entity
@@ -19,13 +19,14 @@ public class User {
     @GeneratedValue
     private long id;
 
-    @NonNull
+    @NotEmpty(message = "His username cannot be empty.")
+    @Length(min = 5, max = 20, message = "The length of his username must be between 5 and 20 characters")
     private String username;
 
-    @NonNull
+    @NotNull(message = "His date of birth cannot be empty")
     private LocalDate dateOfBirth;
 
-    @NonNull
+    @NotEmpty(message = "His country of residence cannot be empty")
     private String country;
 
     @Nullable
@@ -95,10 +96,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    @AssertTrue(message = "He must live in this country to be registered")
     public boolean isResident() {
         return this.country.toLowerCase().equals("france");
     }
 
+    @AssertTrue(message = "He must have the required age to be registered")
     public boolean isAdult() {
         int age = Period.between(this.dateOfBirth, LocalDate.now()).getYears();
         return age >= 18;

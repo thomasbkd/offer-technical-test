@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 
 @RestController
@@ -55,26 +57,31 @@ public class UserController {
                     phoneNumber
             );
 
-            if(!user.isAdult()) {
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            Validator validator = factory.getValidator();
+
+            Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+
+            if(constraintViolations.size() == 0) {
+                userRepository.save(user);
                 return new ResponseEntity<String>(
-                        "The user cannot be registered because he does not have the required age.",
+                        "User registered successfully !",
+                        HttpStatus.OK
+                );
+            }
+
+            else {
+                String errorMessage = new String("The user cannot be registered for the following reasons: \n");
+                for(ConstraintViolation<User> violation : constraintViolations) {
+                    errorMessage = errorMessage.concat("\t - ").concat(violation.getMessage().concat("\n"));
+                }
+
+                return new ResponseEntity<String>(
+                        errorMessage,
                         HttpStatus.UNPROCESSABLE_ENTITY
                 );
             }
 
-            if(!user.isResident()) {
-                return new ResponseEntity<String>(
-                        "The user cannot be registered because he does not live in this country.",
-                        HttpStatus.UNPROCESSABLE_ENTITY
-                );
-            }
-
-            userRepository.save(user);
-
-            return new ResponseEntity<String>(
-                    "User registered successfully !",
-                    HttpStatus.OK
-            );
         }
 
         catch(Exception e) {
