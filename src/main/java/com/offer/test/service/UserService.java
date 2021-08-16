@@ -5,7 +5,6 @@ import com.offer.test.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -26,6 +25,10 @@ public class UserService {
 
     public Optional<User> getUserWithId(long id) {
         return userRepository.findById(id);
+    }
+
+    public Optional<User> getUserWithUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public Optional<String> createUser(
@@ -54,6 +57,10 @@ public class UserService {
         }
         catch(Exception e) {
             return Optional.of("The given date of birth is not correct.");
+        }
+
+        if(this.getUserWithUsername(username).isPresent()) {
+            return Optional.of("The chosen username already exists.");
         }
 
         User user = User
