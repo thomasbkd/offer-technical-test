@@ -83,7 +83,7 @@ public class UserService {
         }
 
         else {
-            String errorMessage = new String("The user cannot be registered for the following reasons:");
+            String errorMessage = "The user cannot be registered for the following reasons:";
             for(ConstraintViolation<User> violation : constraintViolations) {
                 errorMessage = errorMessage.concat("\n\t - ").concat(violation.getMessage());
             }
