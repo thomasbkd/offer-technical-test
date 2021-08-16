@@ -19,16 +19,28 @@ import java.util.Set;
 public class UserService {
     private final UserRepository userRepository;
 
+    /**
+     * Gets all the users present in the User table in the data source, and returns an Iterable of them.
+     * @return an Iterable of all users.
+     * @see Iterable
+     */
     public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * Searches the user corresponding to the given id in the data source and returns it in an Optional.
+     * @param id primary key of the desired user.
+     * @return an Optional containing (or not) the desired user.
+     * @see Optional
+     */
     public Optional<User> getUserWithId(long id) {
         return userRepository.findById(id);
     }
 
-    public Optional<User> getUserWithUsername(String username) {
-        return userRepository.findByUsername(username);
+
+    public Boolean isUsernameAlreadyChosen(String username) {
+        return !userRepository.findAllByUsername(username).isEmpty();
     }
 
     public Optional<String> createUser(
@@ -59,7 +71,7 @@ public class UserService {
             return Optional.of("The given date of birth is not correct.");
         }
 
-        if(this.getUserWithUsername(username).isPresent()) {
+        if(this.isUsernameAlreadyChosen(username)) {
             return Optional.of("The chosen username already exists.");
         }
 
