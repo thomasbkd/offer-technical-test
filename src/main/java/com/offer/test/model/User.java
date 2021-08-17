@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
- * This class defines the entity object for a user, containing its columns with their respective constraints, its
+ * This class defines the business object for a user, containing its columns with their respective constraints, its
  * constructors, getters and setters.
  */
 @Getter
