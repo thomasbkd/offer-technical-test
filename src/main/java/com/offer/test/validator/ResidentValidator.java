@@ -16,7 +16,7 @@ public class ResidentValidator implements ConstraintValidator<ResidentConstraint
 
     @Override
     public boolean isValid(String country, ConstraintValidatorContext cxt) {
-        if(Objects.isNull(country)) return true;
+        if(Objects.isNull(country)) return true; // to ignore this validation if there is no specified country
         return country.equalsIgnoreCase(this.localCountry);
     }
 }

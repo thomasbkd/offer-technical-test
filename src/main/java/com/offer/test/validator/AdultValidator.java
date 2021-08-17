@@ -16,7 +16,7 @@ public class AdultValidator implements ConstraintValidator<AdultConstraint, Loca
 
     @Override
     public boolean isValid(LocalDate dateOfBirth, ConstraintValidatorContext cxt) {
-        if(Objects.isNull(dateOfBirth)) return true;
+        if(Objects.isNull(dateOfBirth)) return true; // to ignore this validation if no specified date of birth
         int age = Period.between(dateOfBirth, LocalDate.now()).getYears();
         return age >= this.requiredAge;
     }
