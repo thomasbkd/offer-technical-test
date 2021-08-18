@@ -2,7 +2,7 @@
 
 
 ## Purpose
-The purpose of this technical test is to develop a Springboot API able to:
+The purpose of this technical test was to develop a Springboot API able to:
 * add users from some information;
 * display the information of a desired user.
 
