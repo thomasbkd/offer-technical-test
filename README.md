@@ -14,7 +14,8 @@ This API is composed of 3 HTTP routes:
 * `POST` on `/api`: create a new user from these fields `username`, `dayOfBirth`, `monthOfBirth`, `yearOfBirth`,
 `country` and these optional fields `gender` and `phoneNumber`.
 
-To be registered, a user must be adult (over 18 by default), and resident of this country (France by default).
+To be registered, a user must be adult (over 18 by default), and resident of this country (France by default). I have
+also configured the API so the username must be unique and be between 5 and 20 characters long.
 
 
 ## What have been done
