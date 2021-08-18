@@ -51,7 +51,7 @@ public class UserController {
      * Tries to create a new user from the given parameters. Calls the <code>createUser</code> of the corresponding
      * service, and return :
      * <li>an <b>HTTP 200</b> response with a <b>success message</b> in its body if the service's method do not returned anything</li>
-     * <li>an <b>HTTP 412</b> response with an <b>error message</b> in its body if the service's method returned an error message</li>
+     * <li>an <b>HTTP 422</b> response with an <b>error message</b> in its body if the service's method returned an error message</li>
      * <li>an <b>HTTP 500</b> response with an <b>error message</b> in its body if an exception is thrown by the service's method</li>
      *
      * @param username the username of the user to be created.

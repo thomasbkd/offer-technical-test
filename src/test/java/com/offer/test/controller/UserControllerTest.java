@@ -89,7 +89,7 @@ class UserControllerTest {
     }
 
     @Test
-    void shouldReturnHTTP412_Create_UserNotOk() {
+    void shouldReturnHTTP422_Create_UserNotOk() {
         when(userService.createUser("user1", 29, 8, 1999, "UK", null, null)).thenReturn(
                 Optional.of("The user cannot be registered.")
         );
