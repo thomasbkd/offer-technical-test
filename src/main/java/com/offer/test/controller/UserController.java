@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,7 +28,7 @@ public class UserController {
      * @see ResponseEntity
      */
     @GetMapping(path = "/api")
-    public ResponseEntity<?> index() {
+    public ResponseEntity<List<User>> index() {
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
 

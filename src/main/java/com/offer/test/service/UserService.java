@@ -10,6 +10,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -27,10 +28,10 @@ public class UserService {
 
     /**
      * Gets all the users present in the User table in the data source, and returns an Iterable of them.
-     * @return an Iterable of all users.
-     * @see Iterable
+     * @return a list of all users.
+     * @see List
      */
-    public Iterable<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
