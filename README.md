@@ -1,5 +1,5 @@
 # Offer Technical Test
-**********
+
 
 ## Purpose
 The purpose of this technical test is to develop a Springboot API able to:
